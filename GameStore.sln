@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Api", "GameStore.Api\GameStore.Api.csproj", "{DD5AE550-B9E7-4B68-A0C0-7DDE4AE25D8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Application", "GameStore.Application\GameStore.Application.csproj", "{7065F431-1EAD-4B53-818A-34FCE844E49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Domain", "GameStore.Domain\GameStore.Domain.csproj", "{7829990F-843A-46CB-82EC-45D21C695CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.Data", "GameStore.Data\GameStore.Data.csproj", "{41BD1DEF-2FF7-4E60-A477-802D19B97829}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD5AE550-B9E7-4B68-A0C0-7DDE4AE25D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD5AE550-B9E7-4B68-A0C0-7DDE4AE25D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD5AE550-B9E7-4B68-A0C0-7DDE4AE25D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD5AE550-B9E7-4B68-A0C0-7DDE4AE25D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7065F431-1EAD-4B53-818A-34FCE844E49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7065F431-1EAD-4B53-818A-34FCE844E49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7065F431-1EAD-4B53-818A-34FCE844E49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7065F431-1EAD-4B53-818A-34FCE844E49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7829990F-843A-46CB-82EC-45D21C695CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7829990F-843A-46CB-82EC-45D21C695CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7829990F-843A-46CB-82EC-45D21C695CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7829990F-843A-46CB-82EC-45D21C695CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BD1DEF-2FF7-4E60-A477-802D19B97829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BD1DEF-2FF7-4E60-A477-802D19B97829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BD1DEF-2FF7-4E60-A477-802D19B97829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BD1DEF-2FF7-4E60-A477-802D19B97829}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

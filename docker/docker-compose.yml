@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  game_store_db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: game_store_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5435:5432'
+    volumes:
+      - game_store_db:/var/lib/postgresql/data
+
+volumes:
+  game_store_db:
+    driver: local
