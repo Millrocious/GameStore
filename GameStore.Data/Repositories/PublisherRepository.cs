@@ -22,10 +22,12 @@ public class PublisherRepository : IPublisherRepository
         return await _dbContext.Publishers.ToListAsync();
     }
 
-    public async Task AddPublisherAsync(Publisher publisher)
+    public async Task<Publisher> AddPublisherAsync(Publisher publisher)
     {
-        await _dbContext.Publishers.AddAsync(publisher);
+        var entity = await _dbContext.Publishers.AddAsync(publisher);
         await _dbContext.SaveChangesAsync();
+
+        return entity.Entity;
     }
 
     public async Task UpdatePublisherAsync(Publisher publisher)

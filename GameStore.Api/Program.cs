@@ -1,5 +1,5 @@
 using GameStore.Data;
-using GameStore.Data.Repositories;
+using GameStore.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,13 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
-    builder.Services.AddScoped<IGameRepository, GameRepository>();
+    builder.Services
+        .AddDataProject()
+        .AddApplicationProject();
 }
 
 
 var app = builder.Build();
 {
+    app.MapControllers();
+    
     app.Run();
 }
 

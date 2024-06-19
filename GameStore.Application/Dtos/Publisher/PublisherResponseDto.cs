@@ -1,9 +1,8 @@
-namespace GameStore.Domain.Entities;
+namespace GameStore.Dtos.Publisher;
 
-public record Publisher
+public class PublisherResponseDto
 {
     public int Id { get; set; }
     public required string Name { get; set; }
     public required string Country { get; set; }
-    public IList<Game> Games { get; } = new List<Game>();
 }
