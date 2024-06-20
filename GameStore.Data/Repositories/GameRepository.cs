@@ -1,9 +1,9 @@
 using GameStore.Domain.Entities;
+using GameStore.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStore.Data.Repositories;
 
-// GameRepository.cs
 public class GameRepository : IGameRepository
 {
     private readonly ApplicationDbContext _dbContext;
@@ -13,16 +13,10 @@ public class GameRepository : IGameRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Game?> GetGameByIdAsync(Guid id)
-    {
-        return await _dbContext.Games.FindAsync(id);
-    }
-
-    public async Task<IList<Game>> GetAllGamesAsync()
-    {
-        return await _dbContext.Games.ToListAsync();
-    }
-
+    public ValueTask<Game?> GetGameByIdAsync(Guid id) => _dbContext.Games.FindAsync(id);
+    
+    public Task<List<Game>> GetAllGamesAsync() => _dbContext.Games.ToListAsync();
+    
     public async Task AddGameAsync(Game game)
     {
         await _dbContext.Games.AddAsync(game);

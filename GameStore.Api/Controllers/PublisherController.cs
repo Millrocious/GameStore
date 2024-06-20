@@ -23,8 +23,8 @@ public class PublisherController : ControllerBase
         return Ok(publishers);
     }
     
-    [HttpGet("{id}")]
-    public async Task<ActionResult<PublisherResponseDto>> GetPublisher(Guid id)
+    [HttpGet("{id:int:min(1)}")]
+    public async Task<ActionResult<PublisherResponseDto>> GetPublisher([FromRoute] int id)
     {
         var publisher = await _publisherService.GetPublisherByIdAsync(id);
 
@@ -32,23 +32,23 @@ public class PublisherController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult> CreatePublisher(PublisherRequestDto publisherDto)
+    public async Task<ActionResult> CreatePublisher([FromBody] PublisherRequestDto publisherDto)
     {
         var publisher = await _publisherService.AddPublisherAsync(publisherDto);
 
         return Ok(publisher);
     }
     
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdatePublisher(Guid id, PublisherRequestDto publisherDto)
+    [HttpPut("{id:int:min(1)}")]
+    public async Task<ActionResult> UpdatePublisher([FromRoute] int id, [FromBody] PublisherRequestDto publisherDto)
     {
         await _publisherService.UpdatePublisherAsync(id, publisherDto);
         
         return NoContent();
     }
     
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> DeletePublisher(Guid id)
+    [HttpDelete("{id:int:min(1)}")]
+    public async Task<ActionResult> DeletePublisher([FromRoute] int id)
     {
         await _publisherService.DeletePublisherAsync(id);
 

@@ -1,11 +1,11 @@
 using GameStore.Domain.Entities;
 
-namespace GameStore.Data.Repositories;
+namespace GameStore.Domain.Interfaces.Repositories;
 
 public interface IPublisherRepository
 {
-    Task<Publisher?> GetPublisherByIdAsync(Guid id);
-    Task<IList<Publisher>> GetAllPublishersAsync();
+    ValueTask<Publisher?> GetPublisherByIdAsync(int id);
+    Task<List<Publisher>> GetAllPublishersAsync();
     Task<Publisher> AddPublisherAsync(Publisher publisher);
     Task UpdatePublisherAsync(Publisher publisher);
     Task DeletePublisherAsync(Publisher publisher);

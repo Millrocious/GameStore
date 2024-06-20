@@ -1,4 +1,5 @@
 using GameStore.Domain.Entities;
+using GameStore.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameStore.Data.Repositories;
@@ -12,15 +13,9 @@ public class PublisherRepository : IPublisherRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Publisher?> GetPublisherByIdAsync(Guid id)
-    {
-        return await _dbContext.Publishers.FindAsync(id);
-    }
-
-    public async Task<IList<Publisher>> GetAllPublishersAsync()
-    {
-        return await _dbContext.Publishers.ToListAsync();
-    }
+    public ValueTask<Publisher?> GetPublisherByIdAsync(int id) => _dbContext.Publishers.FindAsync(id);
+    
+    public Task<List<Publisher>> GetAllPublishersAsync() => _dbContext.Publishers.ToListAsync();
 
     public async Task<Publisher> AddPublisherAsync(Publisher publisher)
     {

@@ -1,11 +1,11 @@
 using GameStore.Domain.Entities;
 
-namespace GameStore.Data.Repositories;
+namespace GameStore.Domain.Interfaces.Repositories;
 
 public interface IGameRepository
 {
-    Task<Game?> GetGameByIdAsync(Guid id);
-    Task<IList<Game>> GetAllGamesAsync();
+    ValueTask<Game?> GetGameByIdAsync(Guid id);
+    Task<List<Game>> GetAllGamesAsync();
     Task AddGameAsync(Game game);
     Task UpdateGameAsync(Game game);
     Task DeleteGameAsync(Game game);
