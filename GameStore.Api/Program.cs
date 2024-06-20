@@ -1,3 +1,4 @@
+using GameStore;
 using GameStore.Application.AutoMapperProfiles;
 using GameStore.Data;
 using GameStore.Extensions;
@@ -15,13 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
     
     builder.Services
         .AddRepositories()
-        .AddServices();
+        .AddServices()
+        .AddExceptionHandler<GlobalExceptionHandler>();
 }
 
 
 var app = builder.Build();
 {
     app.MapControllers();
+    app.UseExceptionHandler(_ => { });
     
     app.Run();
 }
