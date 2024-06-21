@@ -15,7 +15,7 @@ public class PublisherRepository : IPublisherRepository
 
     public ValueTask<Publisher?> GetPublisherByIdAsync(int id) => _dbContext.Publishers.FindAsync(id);
     
-    public Task<List<Publisher>> GetAllPublishersAsync() => _dbContext.Publishers.ToListAsync();
+    public Task<List<Publisher>> GetAllPublishersAsync() => _dbContext.Publishers.Include(p => p.Games).ToListAsync();
 
     public async Task<Publisher> AddPublisherAsync(Publisher publisher)
     {

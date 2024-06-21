@@ -1,13 +1,12 @@
+using System.Text.Json.Serialization;
 using GameStore.Domain.Enums;
 
-namespace GameStore.Domain.Entities;
+namespace GameStore.Application.Dtos.Game;
 
-public class Game
+public class GameRequestDto
 {
-    public int Id { get; set; }
     public required string Title { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public GameGenre Genre { get; set; }
-
     public int PublisherId { get; set; }
-    public Publisher Publisher { get; set; } = default!;
 }

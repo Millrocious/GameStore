@@ -8,13 +8,18 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
 {
     public void Configure(EntityTypeBuilder<Game> builder)
     {
-        builder.HasKey(c => c.Id);
+        builder.HasKey(g => g.Id);
 
-        builder.Property(c => c.Title)
+        builder.Property(g => g.Title)
             .HasMaxLength(50)
             .IsRequired();
         
-        builder.Property(c => c.PublisherId)
+        builder.Property(g => g.PublisherId)
             .IsRequired();
+
+        builder.HasOne(g => g.Publisher)
+            .WithMany(p => p.Games)
+            .HasForeignKey(g => g.PublisherId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,3 +1,4 @@
+using GameStore.Data.Configurations;
 using GameStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,4 +13,10 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Publisher> Publishers { get; init; }
     public DbSet<Game> Games { get; init; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new GameConfiguration());
+        modelBuilder.ApplyConfiguration(new PublisherConfiguration());
+    }
 }

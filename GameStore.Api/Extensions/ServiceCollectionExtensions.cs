@@ -19,6 +19,15 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddScoped<IPublisherService, PublisherService>();
+        services.AddScoped<IGameService, GameService>();
+
+        return services;
+    }
+    
+    public static IServiceCollection AddMappers(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(PublisherProfile).Assembly);
+        services.AddAutoMapper(typeof(GameProfile).Assembly);
 
         return services;
     }

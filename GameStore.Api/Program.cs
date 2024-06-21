@@ -11,12 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
     
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-    builder.Services.AddAutoMapper(typeof(PublisherProfile).Assembly);
     
     builder.Services
         .AddRepositories()
         .AddServices()
+        .AddMappers()
         .AddExceptionHandler<GlobalExceptionHandler>();
 }
 

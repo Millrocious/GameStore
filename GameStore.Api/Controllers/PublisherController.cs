@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Controllers;
 
-[Route("api/publishers")]
 [ApiController]
+[Route("api/publishers")]
 public class PublisherController : ControllerBase
 {
     private readonly IPublisherService _publisherService;
@@ -16,7 +16,7 @@ public class PublisherController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IList<PublisherResponseDto>>> GetPublishers()
+    public async Task<ActionResult<IList<PublisherResponseDto>>> GetAll()
     {
         var publishers = await _publisherService.GetAllPublishersAsync();
         
@@ -24,7 +24,7 @@ public class PublisherController : ControllerBase
     }
     
     [HttpGet("{id:int:min(1)}")]
-    public async Task<ActionResult<PublisherResponseDto>> GetPublisher([FromRoute] int id)
+    public async Task<ActionResult<PublisherResponseDto>> GetById([FromRoute] int id)
     {
         var publisher = await _publisherService.GetPublisherByIdAsync(id);
 
@@ -32,7 +32,7 @@ public class PublisherController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult> CreatePublisher([FromBody] PublisherRequestDto publisherDto)
+    public async Task<ActionResult> Add([FromBody] PublisherRequestDto publisherDto)
     {
         var publisher = await _publisherService.AddPublisherAsync(publisherDto);
 
@@ -40,7 +40,7 @@ public class PublisherController : ControllerBase
     }
     
     [HttpPut("{id:int:min(1)}")]
-    public async Task<ActionResult> UpdatePublisher([FromRoute] int id, [FromBody] PublisherRequestDto publisherDto)
+    public async Task<ActionResult> Update([FromRoute] int id, [FromBody] PublisherRequestDto publisherDto)
     {
         await _publisherService.UpdatePublisherAsync(id, publisherDto);
         
@@ -48,7 +48,7 @@ public class PublisherController : ControllerBase
     }
     
     [HttpDelete("{id:int:min(1)}")]
-    public async Task<ActionResult> DeletePublisher([FromRoute] int id)
+    public async Task<ActionResult> Delete([FromRoute] int id)
     {
         await _publisherService.DeletePublisherAsync(id);
 

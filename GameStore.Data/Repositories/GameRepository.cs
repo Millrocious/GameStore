@@ -13,14 +13,16 @@ public class GameRepository : IGameRepository
         _dbContext = dbContext;
     }
 
-    public ValueTask<Game?> GetGameByIdAsync(Guid id) => _dbContext.Games.FindAsync(id);
+    public ValueTask<Game?> GetGameByIdAsync(int id) => _dbContext.Games.FindAsync(id);
     
     public Task<List<Game>> GetAllGamesAsync() => _dbContext.Games.ToListAsync();
     
-    public async Task AddGameAsync(Game game)
+    public async Task<Game> AddGameAsync(Game game)
     {
-        await _dbContext.Games.AddAsync(game);
+        var entity = await _dbContext.Games.AddAsync(game);
         await _dbContext.SaveChangesAsync();
+
+        return entity.Entity;
     }
 
     public async Task UpdateGameAsync(Game game)

@@ -49,11 +49,8 @@ public class PublisherService : IPublisherService
     {
         var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
         
-        if (publisher is null)
-        {
-            throw new NotFoundException("Publisher not found");
-        }
-
+        if (publisher is null) throw new NotFoundException("Publisher not found");
+        
         _mapper.Map(updatedPublisher, publisher);
         await _publisherRepository.UpdatePublisherAsync(publisher);
     }
@@ -62,10 +59,7 @@ public class PublisherService : IPublisherService
     {
         var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
         
-        if (publisher is null)
-        {
-            throw new NotFoundException("Publisher not found");
-        }
+        if (publisher is null) throw new NotFoundException("Publisher not found");
 
         await _publisherRepository.DeletePublisherAsync(publisher);
     }
