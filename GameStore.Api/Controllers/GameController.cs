@@ -1,7 +1,5 @@
 using GameStore.Application.Dtos.Game;
-using GameStore.Application.Services.Implementations;
 using GameStore.Application.Services.Interfaces;
-using GameStore.Dtos.Publisher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Controllers;
@@ -34,11 +32,11 @@ public class GameController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] GameRequestDto gameDto)
+    public async Task<ActionResult<GameResponseDto>> Add([FromBody] GameRequestDto gameDto)
     {
         var game = await _gameService.AddGameAsync(gameDto);
 
-        return Ok(game);
+        return Created(nameof(Add), game);
     }
     
     [HttpPut("{id:int:min(1)}")]

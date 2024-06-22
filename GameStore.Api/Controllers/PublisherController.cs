@@ -1,5 +1,5 @@
+using GameStore.Application.Dtos.Publisher;
 using GameStore.Application.Services.Interfaces;
-using GameStore.Dtos.Publisher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore.Controllers;
@@ -32,11 +32,11 @@ public class PublisherController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] PublisherRequestDto publisherDto)
+    public async Task<ActionResult<PublisherResponseDto>> Add([FromBody] PublisherRequestDto publisherDto)
     {
         var publisher = await _publisherService.AddPublisherAsync(publisherDto);
 
-        return Ok(publisher);
+        return Created(nameof(Add), publisher);
     }
     
     [HttpPut("{id:int:min(1)}")]

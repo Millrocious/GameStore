@@ -1,6 +1,6 @@
 using AutoMapper;
+using GameStore.Application.Dtos.Publisher;
 using GameStore.Domain.Entities;
-using GameStore.Dtos.Publisher;
 
 namespace GameStore.Application.AutoMapperProfiles;
 

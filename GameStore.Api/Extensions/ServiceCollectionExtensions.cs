@@ -27,7 +27,6 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddMappers(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(PublisherProfile).Assembly);
-        services.AddAutoMapper(typeof(GameProfile).Assembly);
 
         return services;
     }

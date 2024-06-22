@@ -1,5 +1,4 @@
 using GameStore;
-using GameStore.Application.AutoMapperProfiles;
 using GameStore.Data;
 using GameStore.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
+    builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
     builder.Services
         .AddRepositories()
         .AddServices()
-        .AddMappers()
-        .AddExceptionHandler<GlobalExceptionHandler>();
+        .AddMappers();
 }
 
 

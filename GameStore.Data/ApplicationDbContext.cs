@@ -1,7 +1,5 @@
-using GameStore.Data.Configurations;
 using GameStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace GameStore.Data;
 
@@ -16,7 +14,6 @@ public class ApplicationDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new GameConfiguration());
-        modelBuilder.ApplyConfiguration(new PublisherConfiguration());
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 }

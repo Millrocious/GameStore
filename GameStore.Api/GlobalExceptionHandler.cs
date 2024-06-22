@@ -1,9 +1,6 @@
-using System.Diagnostics;
-using System.Text.Json;
-using GameStore.Application.Common;
+using GameStore.Domain.Common.Models;
 using GameStore.Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GameStore;
 

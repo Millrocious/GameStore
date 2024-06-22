@@ -1,11 +1,9 @@
 using AutoMapper;
 using GameStore.Application.Dtos.Game;
 using GameStore.Application.Services.Interfaces;
-using GameStore.Data.Repositories;
 using GameStore.Domain.Entities;
 using GameStore.Domain.Exceptions;
 using GameStore.Domain.Interfaces.Repositories;
-using GameStore.Dtos.Publisher;
 
 namespace GameStore.Application.Services.Implementations;
 
@@ -22,9 +20,7 @@ public class GameService : IGameService
 
     public async Task<GameResponseDto> GetGameByIdAsync(int id)
     {
-        var game = await _gameRepository.GetGameByIdAsync(id);
-        
-        if (game is null) throw new NotFoundException("Game not found");
+        var game = await GetGameOrThrowAsync(id);
         
         return _mapper.Map<GameResponseDto>(game);
     }
@@ -45,20 +41,29 @@ public class GameService : IGameService
 
     public async Task UpdateGameAsync(int id, GameRequestDto updatedGame)
     {
-        var game = await _gameRepository.GetGameByIdAsync(id);
-        
-        if (game is null) throw new NotFoundException("Game not found");
+        var game = await GetGameOrThrowAsync(id);
 
         _mapper.Map(updatedGame, game);
+        
         await _gameRepository.UpdateGameAsync(game);
     }
 
     public async Task DeleteGameAsync(int id)
     {
-        var game = await _gameRepository.GetGameByIdAsync(id);
-        
-        if (game is null) throw new NotFoundException("Game not found");
+        var game = await GetGameOrThrowAsync(id);
 
         await _gameRepository.DeleteGameAsync(game);
+    }
+
+    private async Task<Game> GetGameOrThrowAsync(int id)
+    {
+        var game = await _gameRepository.GetGameByIdAsync(id);
+
+        if (game is null)
+        {
+            throw new NotFoundException("Game not found");
+        }
+
+        return game;
     }
 }

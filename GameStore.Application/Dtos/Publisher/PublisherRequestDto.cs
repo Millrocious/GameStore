@@ -1,4 +1,4 @@
-namespace GameStore.Dtos.Publisher;
+namespace GameStore.Application.Dtos.Publisher;
 
 public class PublisherRequestDto
 {

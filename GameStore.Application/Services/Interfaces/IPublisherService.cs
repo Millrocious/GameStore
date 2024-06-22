@@ -1,4 +1,4 @@
-using GameStore.Dtos.Publisher;
+using GameStore.Application.Dtos.Publisher;
 
 namespace GameStore.Application.Services.Interfaces;
 

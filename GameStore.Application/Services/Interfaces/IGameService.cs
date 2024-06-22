@@ -1,6 +1,6 @@
 using GameStore.Application.Dtos.Game;
 
-namespace GameStore.Application.Services.Implementations;
+namespace GameStore.Application.Services.Interfaces;
 
 public interface IGameService
 {

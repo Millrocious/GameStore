@@ -1,10 +1,9 @@
 using AutoMapper;
+using GameStore.Application.Dtos.Publisher;
 using GameStore.Application.Services.Interfaces;
-using GameStore.Data.Repositories;
 using GameStore.Domain.Entities;
 using GameStore.Domain.Exceptions;
 using GameStore.Domain.Interfaces.Repositories;
-using GameStore.Dtos.Publisher;
 
 namespace GameStore.Application.Services.Implementations;
 
@@ -21,12 +20,7 @@ public class PublisherService : IPublisherService
 
     public async Task<PublisherResponseDto> GetPublisherByIdAsync(int id)
     {
-        var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
-        
-        if (publisher is null)
-        {
-            throw new NotFoundException("Publisher not found");
-        }
+        var publisher = await GetPublisherOrThrowAsync(id);
         
         return _mapper.Map<PublisherResponseDto>(publisher);
     }
@@ -47,20 +41,29 @@ public class PublisherService : IPublisherService
 
     public async Task UpdatePublisherAsync(int id, PublisherRequestDto updatedPublisher)
     {
-        var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
-        
-        if (publisher is null) throw new NotFoundException("Publisher not found");
+        var publisher = await GetPublisherOrThrowAsync(id);
         
         _mapper.Map(updatedPublisher, publisher);
+        
         await _publisherRepository.UpdatePublisherAsync(publisher);
     }
 
     public async Task DeletePublisherAsync(int id)
     {
-        var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
-        
-        if (publisher is null) throw new NotFoundException("Publisher not found");
+        var publisher = await GetPublisherOrThrowAsync(id);
 
         await _publisherRepository.DeletePublisherAsync(publisher);
+    }
+    
+    private async Task<Publisher> GetPublisherOrThrowAsync(int id)
+    {
+        var publisher = await _publisherRepository.GetPublisherByIdAsync(id);
+
+        if (publisher is null)
+        {
+            throw new NotFoundException("Publisher not found");
+        }
+
+        return publisher;
     }
 }

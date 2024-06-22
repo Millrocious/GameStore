@@ -1,4 +1,4 @@
-namespace GameStore.Application.Common;
+namespace GameStore.Domain.Common.Models;
 
 public class ErrorResponse
 {
